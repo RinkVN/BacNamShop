@@ -321,7 +321,7 @@
                                                             <li class="iscart">
                                                                 <a href="#">
                                                                     <div class="icon-large">
-                                                                        <a href="product-detail/v1.14.0/cart.jsp">
+                                                                        <a href="cart.jsp">
                                                                             <div class="cart-icon">
                                                                                 <i class="ri-shopping-cart-line"></i>
                                                                             </div>

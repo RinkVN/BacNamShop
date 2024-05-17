@@ -338,23 +338,7 @@ public class ProductDAOimpl implements ProductDAO {
         VariantInfo v = null;
 
         try {
-             String sql = "SELECT DISTINCT VariantID, ProductID,\n"
-                    + "    SUBSTRING_INDEX(SUBSTRING_INDEX(Size, ',', numbers.n), ',', -1) AS Size,\n"
-                    + "    SUBSTRING_INDEX(SUBSTRING_INDEX(Material, ',', numbers.n), ',', -1) AS Material\n"
-                    + "FROM variant\n"
-                    + "CROSS JOIN (\n"
-                    + "    SELECT (a.a + (10 * b.a) + (100 * c.a)) + 1 AS n\n"
-                    + "    FROM (SELECT 0 AS a UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL\n"
-                    + "          SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) AS a\n"
-                    + "    CROSS JOIN (SELECT 0 AS a UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL\n"
-                    + "                SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) AS b\n"
-                    + "    CROSS JOIN (SELECT 0 AS a UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL\n"
-                    + "                SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) AS c\n"
-                    + ") AS numbers\n"
-                    + "WHERE numbers.n <= (SELECT MAX(LENGTH(Size) - LENGTH(REPLACE(Size, ',', '')) + 1) FROM variant)\n"
-                    + "AND ProductID = ?\n"
-                    + "ORDER BY Size ;";
-             
+            String sql = "SELECT * FROM variant WHERE ProductID=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();

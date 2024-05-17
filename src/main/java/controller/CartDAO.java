@@ -23,6 +23,6 @@ public interface CartDAO {
 
     public boolean removeProduct(int ProductID);
     
-    
+    public boolean updateProductColorAndSize(int productID, int userID, String productColor, String size);
 
 }

@@ -106,6 +106,27 @@ public class CartDAOimpl implements CartDAO {
         return f;
     }
 
+    public boolean updateProductColorAndSize(int productID, int userID, String productColor, String size) {
+        boolean f = false;
+        try {
+
+            String sql = "UPDATE cart SET ProductColor = ?, Size = ? WHERE ProductID = ? AND userID = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, productColor);
+            ps.setString(2, size);
+            ps.setInt(3, productID);
+            ps.setInt(4, userID);
+
+            int i = ps.executeUpdate();
+            if (i == 1) {
+                f = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return f;
+    }
+
     public boolean isProductInCart(int userID, int productID) {
         String sql = "SELECT COUNT(*) FROM cart WHERE userID = ? AND ProductID = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -114,7 +135,7 @@ public class CartDAOimpl implements CartDAO {
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     int count = resultSet.getInt(1);
-                    return count > 0; 
+                    return count > 0;
                 }
             }
         } catch (SQLException e) {

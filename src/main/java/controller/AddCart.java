@@ -39,13 +39,12 @@ public class AddCart extends HttpServlet {
 
             int ProductID = Integer.parseInt(request.getParameter("ProductID"));
             int userID = Integer.parseInt(request.getParameter("userID"));
-//	            Float price = Float.valueOf(request.getParameter("price"));
-//	            Float totalPrice = Float.valueOf(request.getParameter("total_price"));
             String productColor = request.getParameter("productColor");
             String productSize = request.getParameter("productSize");
+//	            Float price = Float.valueOf(request.getParameter("price"));
+//	            Float totalPrice = Float.valueOf(request.getParameter("total_price"));
 
             ProductDAOimpl dao = new ProductDAOimpl(DBContext.getConn());
-
             ProductInfo p = dao.getProductById(ProductID);
             VariantInfo variant = dao.getVariantByProductId(ProductID);
 
@@ -55,13 +54,13 @@ public class AddCart extends HttpServlet {
             c.setProductName(p.getProductName());
             c.setPrice(Float.parseFloat(p.getPrice()));
             c.setTotalPrice(Float.parseFloat(p.getPrice()));
-            c.setProductColor(variant.getProductColor());
-            c.setSize(variant.getSize());
             c.setQuantity(p.getQuantity());
+
+            c.setProductColor(productColor);
+            c.setSize(productSize);
 
 //            c.setProductColor(productColor);
 //            c.setSize(productSize);
-
             CartDAOimpl dao2 = new CartDAOimpl(DBContext.getConn());
 
             if (dao2.isProductInCart(userID, ProductID)) {
@@ -91,7 +90,7 @@ public class AddCart extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
     }
 
 }

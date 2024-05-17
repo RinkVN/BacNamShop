@@ -109,202 +109,202 @@
             </div>
 
             <!-- <section> begin ============================-->
-            <section class="py-0">
-                <div class="container-small">
-                    <div class="row g-5 mb-5 mb-lg-8" >
-                        <div class="col-12 col-lg-6">
-                            <div class="row g-3 mb-3">
+                <form action="../../addcart" method="post">
+                    <section class="py-0">
+                        <div class="container-small">
+                            <div class="row g-5 mb-5 mb-lg-8" >
+                                <div class="col-12 col-lg-6">
+                                    <div class="row g-3 mb-3">
 
 
-                                <div class="col-12 col-md-10 col-lg-12 col-xl-12">
-                                    <div class="d-flex align-items-center border border-translucent rounded-3 text-center p-5 h-100">
-                                        <!-- Ảnh to -->
+                                        <div class="col-12 col-md-10 col-lg-12 col-xl-12">
+                                            <div class="d-flex align-items-center border border-translucent rounded-3 text-center p-5 h-100">
+                                                <!-- Ảnh to -->
 
-                                        <div class="swiper swiper-container theme-slider">
-                                            <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff;
-                                                              --swiper-navigation-size: 25px;" class="mySwiper" thumbs-swiper=".mySwiper2" space-between="10"
-                                                              navigation="true">
-                                                <%
-                                                    if (p.getProductVideo() != null && !p.getProductVideo().isEmpty()) {
-                                                %>
-                                                <swiper-slide>
-                                                    <video id="vid" controls muted autoplay loop webkit-playsinline playsinline
-                                                           src="../../img/video/<%= p.getProductVideo()%>">
-                                                </swiper-slide>
-                                                <%
-                                                    }
-                                                %>
-                                                <swiper-slide>
-                                                    <img src="../../img/<%= p.getProductPhoto()%>" />
-                                                </swiper-slide>
+                                                <div class="swiper swiper-container theme-slider">
+                                                    <swiper-container style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff;
+                                                                      --swiper-navigation-size: 25px;" class="mySwiper" thumbs-swiper=".mySwiper2" space-between="10"
+                                                                      navigation="true">
+                                                        <%
+                                                            if (p.getProductVideo() != null && !p.getProductVideo().isEmpty()) {
+                                                        %>
+                                                        <swiper-slide>
+                                                            <video id="vid" controls muted autoplay loop webkit-playsinline playsinline
+                                                                   src="../../img/video/<%= p.getProductVideo()%>">
+                                                        </swiper-slide>
+                                                        <%
+                                                            }
+                                                        %>
+                                                        <swiper-slide>
+                                                            <imgs rc="../../img/<%= p.getProductPhoto()%>" />
+                                                        </swiper-slide>
 
-                                                <% for (VariantInfo variant : variants) {%>
-                                                <swiper-slide>
-                                                    <img src="../../img/subphoto/<%= variant.getProductSubphoto()%>" />
-                                                </swiper-slide>
-                                                <% }%>
+                                                        <% for (VariantInfo variant : variants) {%>
+                                                        <swiper-slide>
+                                                            <img src="../../img/subphoto/<%= variant.getProductSubphoto()%>" />
+                                                        </swiper-slide>
+                                                        <% }%>
 
-                                            </swiper-container>
+                                                    </swiper-container>
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-12">
-                                <swiper-container class="mySwiper2" space-between="10" slides-per-view="6" free-mode="true"
-                                                  watch-slides-progress="true">
-                                    <%
-                                        if (p.getProductVideo() != null && !p.getProductVideo().isEmpty()) {
-                                    %>
-                                    <swiper-slide>
-                                        <video id="vid" src="../../img/video/<%= p.getProductVideo()%>" />
-                                    </swiper-slide>
-                                    <%
-                                        }
-                                    %>
-                                    <swiper-slide>
-                                        <img src="../../img/<%= p.getProductPhoto()%>" />
-                                    </swiper-slide>
-
-                                    <% for (VariantInfo variant : variants) {%>
-                                    <swiper-slide>
-                                        <img src="../../img/subphoto/<%= variant.getProductSubphoto()%>" />
-                                    </swiper-slide>
-                                    <% }%>
-
-                                </swiper-container>
-                            </div>
-
-                            <!--                            <script>
-                                                            vid = document.getElementById("vid")
-                                                            vid.disablePictureInPicture = true
-                                                        </script>-->
-
-
-                        </div>
-
-                        <div class="col-12 col-lg-6">
-                            <div class="d-flex flex-column justify-content-between">
-                                <div>
-                                    <div class="d-flex flex-wrap">
-                                        <div class="me-2">
-                                            <span class="fa fa-star text-warning"></span>
-                                            <span class="fa fa-star text-warning"></span>
-                                            <span class="fa fa-star text-warning"></span>
-                                            <span class="fa fa-star text-warning"></span>
-                                            <span class="fa fa-star text-warning"></span>
-                                        </div>
-                                        <!--<p class="text-primary fw-semibold mb-2">6548 Người đánh giá </p>-->
-                                    </div>
-                                    <h3 class="mb-3 lh-sm"><%= p.getProductName()%></h3>
-                                    <div class="d-flex flex-wrap align-items-start mb-3"><span
-                                            class="badge text-bg-success fs-9 rounded-pill me-2 fw-semibold">#1 Best seller</span><a
-                                            class="fw-semibold" href="#!"></a></div>
-                                    <div class="d-flex flex-wrap align-items-center">
-                                        <h1 class="me-3"><%= formattedPrice%></h1>
-                                        <p class="text-body-quaternary text-decoration-line-through fs-6 mb-0 me-3"><%= formattedDiscountedPrice%></p>
-                                    </div>
-                                    <p class="text-success fw-semibold fs-7 mb-2">Miễn phí vận chuyển</p>
-
-                                    <!--<p class="text-danger-dark fw-bold mb-5 mb-lg-0">Giảm giá hết hạn trong: 23:00:45</p>-->
-                                </div>
-                                <div>
-                                    <div class="mb-3">
-                                        <p class="fw-semibold mb-2 text-body">Phân loại : </p> 
-                                        <div class="d-grid product-color-variants">
-                                            <div class=" me-2">
-                                            </div>
-                                            <swiper-container class="mySwiper2" space-between="10" slides-per-view="6" free-mode="true"
-                                                              watch-slides-progress="true">
-                                                <select name="#" id="#" class="form-select w-auto select2button">
-                                                    <% for (VariantInfo variant : variants_color) {%>
-                                                    <swiper-slide>
-
-                                                        <option value="<%= variant.getProductColor()%>" data-thumbnail="../../img/color/<%= variant.getProductColorPhoto()%>">
-                                                        <p name="productColor" class="product-color-text"><%= variant.getProductColor()%></p>
-                                                        </option>
-
-                                                    </swiper-slide>
-                                                    <% }%>
-                                                </select>
-                                            </swiper-container>
-                                        </div>
-                                    </div>
-
-                                    <div class="row g-3 g-sm-5 align-items-end">
-                                        <div class="col-12 col-sm-auto">
-                                            <p class="fw-semibold mb-2 text-body">Size :</p>
-                                            <div class="d-flex align-items-center">
-                                                <select class="form-select w-auto">
-                                                    <% for (VariantInfo size : size_material) {
-                                                         String variantSize = size.getSize();
-                                                         if (variantSize != null && !variantSize.isEmpty()) {%>
-                                                    <option name="productSize" value="<%= variantSize%>">
-                                                    <span class="text-body-emphasis"><%= variantSize%></span>
-                                                    </option>
-                                                    <%   }
-                                                            } %>
-                                                </select>
-                                                <a class="ms-2 fs-9 fw-semibold" href="#!">Bảng Size</a>
-                                                <div class="d-flex justify-content-between align-items-end">
-                                                    <div class="share-btn d-flex flex-between-center">
-                                                        <button class="btn btn-phoenix-primary px-3 border-0" onclick="copyToClipboard()">
-                                                            <span class="fas fa-share-alt fs-7"></span>
-                                                        </button>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-12 col-lg-12">
+                                        <swiper-container class="mySwiper2" space-between="10" slides-per-view="6" free-mode="true"
+                                                          watch-slides-progress="true">
+                                            <%
+                                                if (p.getProductVideo() != null && !p.getProductVideo().isEmpty()) {
+                                            %>
+                                            <swiper-slide>
+                                                <video id="vid" src="../../img/video/<%= p.getProductVideo()%>" />
+                                            </swiper-slide>
+                                            <%
+                                                }
+                                            %>
+
+                                            <swiper-slide>
+                                                <img src="../../img/<%= p.getProductPhoto()%>" />
+                                            </swiper-slide>
+                                            <% for (VariantInfo variant : variants) {%>
+                                            <swiper-slide>
+                                                <img src="../../img/subphoto/<%= variant.getProductSubphoto()%>" />
+                                            </swiper-slide>
+                                            <% }%>
+
+                                        </swiper-container>
+                                    </div>
+
+                                    <!--                            <script>
+                                                                    vid = document.getElementById("vid")
+                                                                    vid.disablePictureInPicture = true
+                                                                </script>-->
+
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="d-flex flex-column justify-content-between">
+                                        <div>
+                                            <div class="d-flex flex-wrap">
+                                                <div class="me-2">
+                                                    <span class="fa fa-star text-warning"></span>
+                                                    <span class="fa fa-star text-warning"></span>
+                                                    <span class="fa fa-star text-warning"></span>
+                                                    <span class="fa fa-star text-warning"></span>
+                                                    <span class="fa fa-star text-warning"></span>
+                                                </div>
+                                                <!--<p class="text-primary fw-semibold mb-2">6548 Người đánh giá </p>-->
+                                            </div>
+                                            <h3 class="mb-3 lh-sm" name="pname" value="<%= p.getProductName()%>"><%= p.getProductName()%></h3>
+                                            <div class="d-flex flex-wrap align-items-start mb-3"><span
+                                                    class="badge text-bg-success fs-9 rounded-pill me-2 fw-semibold">#1 Best seller</span><a
+                                                    class="fw-semibold" href="#!"></a></div>
+                                            <div class="d-flex flex-wrap align-items-center">
+                                                <h1 class="me-3" name="price" value="<%= formattedPrice%>"><%= formattedPrice%></h1>
+                                                <p class="text-body-quaternary text-decoration-line-through fs-6 mb-0 me-3"><%= formattedDiscountedPrice%></p>
+                                            </div>
+                                            <p class="text-success fw-semibold fs-7 mb-2">Miễn phí vận chuyển</p>
+
+                                            <!--<p class="text-danger-dark fw-bold mb-5 mb-lg-0">Giảm giá hết hạn trong: 23:00:45</p>-->
+                                        </div>
+                                        <div>
+                                            <div class="mb-3">
+                                                <p class="fw-semibold mb-2 text-body">Phân loại : </p> 
+                                                <div class="d-grid product-color-variants">
+                                                    <div class=" me-2">
+                                                    </div>
+                                                    <swiper-container class="mySwiper2" space-between="10" slides-per-view="6" free-mode="true"
+                                                                      watch-slides-progress="true">
+                                                        <select name="productColor" id="#" class="form-select w-auto select2button">
+                                                            <% for (VariantInfo variant : variants_color) {%>
+                                                            <swiper-slide>
+
+                                                                <option value="<%= variant.getProductColor()%>" data-thumbnail="../../img/color/<%= variant.getProductColorPhoto()%>">
+                                                                <p value="<%= variant.getProductColor()%>" class="product-color-text"><%= variant.getProductColor()%></p>
+                                                                </option>
+
+                                                            </swiper-slide>
+                                                            <% }%>
+                                                        </select>
+                                                    </swiper-container>
+                                                </div>
+                                            </div>
+
+                                            <div class="row g-3 g-sm-5 align-items-end">
+                                                <div class="col-12 col-sm-auto">
+                                                    <p class="fw-semibold mb-2 text-body">Size :</p>
+                                                    <div class="d-flex align-items-center">
+                                                        <select name="productSize" class="form-select w-auto">
+                                                            <% for (VariantInfo size : size_material) {
+                                                                    String variantSize = size.getSize();
+                                                                    if (variantSize != null && !variantSize.isEmpty()) {%>
+                                                            <option value="<%= variantSize%>">
+                                                            <span class="text-body-emphasis"><%= variantSize%></span>
+                                                            </option>
+                                                            <%   }
+                                                                } %>
+                                                        </select>
+                                                        <a class="ms-2 fs-9 fw-semibold" href="#!">Bảng Size</a>
+                                                        <div class="d-flex justify-content-between align-items-end">
+                                                            <div class="share-btn d-flex flex-between-center">
+                                                                <button class="btn btn-phoenix-primary px-3 border-0" onclick="copyToClipboard()">
+                                                                    <span class="fas fa-share-alt fs-7"></span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <%
+                                        if (u == null) {
+                                    %>
+                                    <div class="d-flex btn-add">
+                                        <!--                                <div class="add-cart">
+                                                                            <a href="../../login.jsp">
+                                                                                <button class="btn btn-lg btn-outline-warning rounded-pill w-100 me-3 px-2 px-sm-4 fs-9 fs-sm-8">
+                                                                                    <span class="me-2 far fa-heart"></span><p>Yêu thích</p>
+                                                                                </button>
+                                                                            </a>
+                                                                        </div>-->
+                                        <div class="add-cart">
+                                            <a href="../../login.jsp" class="add-cart">
+                                                <button class="btn btn-lg btn-warning rounded-pill w-100 fs-9 fs-sm-8">
+                                                    <span class="fas fa-shopping-cart me-2"></span><p>Mua ngay</p>
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <% } else {%>
+                                    <div class="d-flex btn-add">
+                                        <!--                                <div class="add-cart">
+                                                                            <a href="../../login.jsp">
+                                                                                <button class="btn btn-lg btn-outline-warning rounded-pill w-100 me-3 px-2 px-sm-4 fs-9 fs-sm-8">
+                                                                                    <span class="me-2 far fa-heart"></span><p>Yêu thích</p>
+                                                                                </button>
+                                                                            </a>
+                                                                        </div>-->
+                                        <div class="add-cart">
+
+                                                <button type="submit" class="btn btn-lg btn-warning rounded-pill w-100 fs-9 fs-sm-8">
+                                                    <span class="fas fa-shopping-cart me-2"></span><p>Mua ngay</p>
+                                                </button>
+
+                                        </div>
+                                    </div>
+                                    <%
+                                        }
+                                    %>
 
                                 </div>
                             </div>
-
-                            <%
-                                if (u == null) {
-                            %>
-                            <div class="d-flex btn-add">
-                                <!--                                <div class="add-cart">
-                                                                    <a href="../../login.jsp">
-                                                                        <button class="btn btn-lg btn-outline-warning rounded-pill w-100 me-3 px-2 px-sm-4 fs-9 fs-sm-8">
-                                                                            <span class="me-2 far fa-heart"></span><p>Yêu thích</p>
-                                                                        </button>
-                                                                    </a>
-                                                                </div>-->
-                                <div class="add-cart">
-                                    <a href="../../login.jsp" class="add-cart">
-                                        <button type="submit" class="btn btn-lg btn-warning rounded-pill w-100 fs-9 fs-sm-8">
-                                            <span class="fas fa-shopping-cart me-2"></span><p>Mua ngay</p>
-                                        </button>
-                                    </a>
-                                </div>
-                            </div>
-                            <% } else {%>
-                            <div class="d-flex btn-add">
-                                <!--                                <div class="add-cart">
-                                                                    <a href="../../login.jsp">
-                                                                        <button class="btn btn-lg btn-outline-warning rounded-pill w-100 me-3 px-2 px-sm-4 fs-9 fs-sm-8">
-                                                                            <span class="me-2 far fa-heart"></span><p>Yêu thích</p>
-                                                                        </button>
-                                                                    </a>
-                                                                </div>-->
-                                <div class="add-cart">
-                                    <a href="../../addcart?ProductID=<%= p.getProductID()%>&&userID=<%= u.getId()%>" class="add-cart">
-                                        <button class="btn btn-lg btn-warning rounded-pill w-100 fs-9 fs-sm-8">
-                                            <span class="fas fa-shopping-cart me-2"></span><p>Mua ngay</p>
-                                        </button>
-                                    </a>
-                                </div>
-                            </div>
-                            <%
-                                }
-                            %>
-
-                        </div>
-
-                    </div>
-                </div><!-- end of .container-->
-            </section><!-- <section> close ============================-->
+                        </div><!-- end of .container-->
+                    </section>
+                </form>
+            <!-- <section> close ============================-->
             <!-- ============================================-->
 
 
@@ -960,46 +960,46 @@
 
 
     <script>
-                                                            (function ($) {
-                                                                $.fn.select2button = function (options) {
-                                                                    this.hide();
-                                                                    return this.each(function (index) {
-                                                                        var select = $(this);
-                                                                        var selectButtons = $('<div class="select-buttons" />');
-                                                                        select.after(selectButtons);
+                                                                (function ($) {
+                                                                    $.fn.select2button = function (options) {
+                                                                        this.hide();
+                                                                        return this.each(function (index) {
+                                                                            var select = $(this);
+                                                                            var selectButtons = $('<div class="select-buttons" />');
+                                                                            select.after(selectButtons);
 
-                                                                        var op = $('option', this);
-                                                                        var ops = $('option:selected', this).index();
+                                                                            var op = $('option', this);
+                                                                            var ops = $('option:selected', this).index();
 
-                                                                        op.each(function () {
-                                                                            var option = $(this);
-                                                                            var button = $('<button>' + option.text() + '</button>');
+                                                                            op.each(function () {
+                                                                                var option = $(this);
+                                                                                var button = $('<button>' + option.text() + '</button>');
 
-                                                                            // Lấy đường dẫn hình ảnh từ thuộc tính data-thumbnail
-                                                                            var thumbnail = option.data('thumbnail');
-                                                                            if (thumbnail) {
-                                                                                var img = $('<img src="' + thumbnail + '" alt="' + option.text() + '" />');
-                                                                                button.prepend(img);
-                                                                            }
+                                                                                // Lấy đường dẫn hình ảnh từ thuộc tính data-thumbnail
+                                                                                var thumbnail = option.data('thumbnail');
+                                                                                if (thumbnail) {
+                                                                                    var img = $('<img src="' + thumbnail + '" alt="' + option.text() + '" />');
+                                                                                    button.prepend(img);
+                                                                                }
 
-                                                                            selectButtons.append(button);
+                                                                                selectButtons.append(button);
 
-                                                                            if (this.index == ops)
-                                                                                button.addClass('active');
+                                                                                if (this.index == ops)
+                                                                                    button.addClass('active');
 
-                                                                            button.on('click', function () {
-                                                                                var btns = $(this).index();
-                                                                                op.removeAttr("selected");
-                                                                                selectButtons.find('button').removeClass('active');
-                                                                                $(this).addClass('active');
-                                                                                op.eq(btns).attr('selected', true);
+                                                                                button.on('click', function () {
+                                                                                    var btns = $(this).index();
+                                                                                    op.removeAttr("selected");
+                                                                                    selectButtons.find('button').removeClass('active');
+                                                                                    $(this).addClass('active');
+                                                                                    op.eq(btns).attr('selected', true);
+                                                                                });
                                                                             });
                                                                         });
-                                                                    });
-                                                                };
-                                                            }(jQuery));
+                                                                    };
+                                                                }(jQuery));
 
-                                                            $('.select2button').select2button();
+                                                                $('.select2button').select2button();
     </script>       
     <script>
         function copyToClipboard() {

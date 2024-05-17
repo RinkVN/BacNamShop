@@ -23,7 +23,7 @@ public class Cart {
     private String DiscountCode;
 
     private String ProductPhoto;
-
+    
     public String getProductPhoto() {
         return ProductPhoto;
     }
