@@ -22,33 +22,61 @@ public class CartDAOimpl implements CartDAO {
         this.conn = conn;
     }
 
+//    public boolean addCart(Cart c) {
+//        boolean f = false;
+//        try {
+//            String sql = "Insert into cart(ProductID,userID,ProductName,ProductColor,Size,price,Quantity,totalPrice,Discount,DiscountCode) "
+//                    + "values(?,?,?,?,?,?,?,?,?,?)";
+//            PreparedStatement ps = conn.prepareStatement(sql);
+//            ps.setInt(1, c.getProductID());
+//            ps.setInt(2, c.getUserID());
+//            ps.setString(3, c.getProductName());
+//            ps.setString(4, c.getProductColor());
+//            ps.setString(5, c.getSize());
+//            ps.setFloat(6, c.getPrice());
+//            ps.setInt(7, c.getQuantity());
+//            ps.setFloat(8, c.getTotalPrice());
+//            ps.setInt(9, c.getDiscount());
+//            ps.setString(10, c.getDiscountCode());
+//
+//            int i = ps.executeUpdate();
+//            if (i == 1) {
+//                f = true;
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return f;
+//    }
+    
     public boolean addCart(Cart c) {
-        boolean f = false;
-        try {
-            String sql = "Insert into cart(ProductID,userID,ProductName,ProductColor,Size,price,Quantity,totalPrice,Discount,DiscountCode) "
-                    + "values(?,?,?,?,?,?,?,?,?,?)";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, c.getProductID());
-            ps.setInt(2, c.getUserID());
-            ps.setString(3, c.getProductName());
-            ps.setString(4, c.getProductColor());
-            ps.setString(5, c.getSize());
-            ps.setFloat(6, c.getPrice());
-            ps.setInt(7, c.getQuantity());
-            ps.setFloat(8, c.getTotalPrice());
-            ps.setInt(9, c.getDiscount());
-            ps.setString(10, c.getDiscountCode());
+    boolean f = false;
+    String sql = "INSERT INTO cart (ProductID, userID, ProductName, ProductColor, Size, price, Quantity, totalPrice, Discount, DiscountCode) "
+               + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-            int i = ps.executeUpdate();
-            if (i == 1) {
-                f = true;
-            }
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+        ps.setInt(1, c.getProductID());
+        ps.setInt(2, c.getUserID());
+        ps.setString(3, c.getProductName());
+        ps.setString(4, c.getProductColor());
+        ps.setString(5, c.getSize());
+        ps.setFloat(6, c.getPrice());
+        ps.setInt(7, c.getQuantity());
+        ps.setFloat(8, c.getTotalPrice());
+        ps.setInt(9, c.getDiscount());
+        ps.setString(10, c.getDiscountCode());
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        int i = ps.executeUpdate();
+        if (i == 1) {
+            f = true;
         }
-        return f;
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+    return f;
+}
+
 
     public List<Cart> getProductByUser(int userID) {
         List<Cart> list = new ArrayList<Cart>();
